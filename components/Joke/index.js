@@ -1,14 +1,12 @@
-import useSWR from "swr";
-import { useRouter } from "next/router";
-import Link from "next/link";
+import useSWR from 'swr';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function Joke() {
   const router = useRouter();
   const { id } = router.query;
-
-  const { data, isLoading } = useSWR(
-    `https://example-apis.vercel.app/api/bad-jokes/${id}`
-  );
+  // externe API mit unseren eigenen Routes
+  const { data, isLoading } = useSWR(`/api/jokes/${id}`);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
